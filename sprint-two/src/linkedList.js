@@ -50,4 +50,8 @@ var Node = function(value) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ * addToTail: Constant time O(1)
+ * removeHead: Constant time O(1)
+ * contains: Linear time O(n)
  */
+
