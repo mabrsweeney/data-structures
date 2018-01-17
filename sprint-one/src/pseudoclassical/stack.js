@@ -5,8 +5,18 @@ var Stack = function() {
   this.count = 0;
 };
 
-Stack.prototype.push = function(val){};
-Stack.prototype.pop = function(){};
+Stack.prototype.push = function(val){
+  this.storage[this.count] = val;
+  this.count++;
+};
+Stack.prototype.pop = function(){
+  if (this.count > 0){
+    var popVal = this.storage[this.count - 1];
+    delete this.storage[this.count - 1];
+    this.count--;  
+    return popVal;
+  }
+};
 Stack.prototype.size = function() {
   return this.count;
 };
