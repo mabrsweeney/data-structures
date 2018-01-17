@@ -10,7 +10,23 @@ var Stack = function() {
 };
 
 var stackMethods = {
+  size: function() {
+    return this.count;
+  },
   
+  push: function(value) {
+    this.count++;
+    this.storage[this.count] = value;
+  },
+  
+  pop: function() {
+    if (this.count > 0) {
+      var output = this.storage[this.count];
+      delete this.storage[this.count];
+      this.count--;
+      return output;
+    }
+  }
 };
 
 
