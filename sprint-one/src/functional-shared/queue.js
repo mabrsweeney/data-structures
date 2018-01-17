@@ -13,6 +13,23 @@ var Queue = function() {
 var queueMethods = {
   size: function() {
     return this.count;
+  },
+  
+  enqueue: function(value) {
+    this.count++;
+    this.storage[this.count] = value;
+  },
+  
+  dequeue: function() {
+    if (this.count > 0) {
+      var output = this.storage[1];
+      for (var key in this.storage) {
+        this.storage[key - 1] = this.storage[key];
+      }
+      this.count--;
+      delete this.storage[0];
+      return output;
+    }
   }
 };
 
