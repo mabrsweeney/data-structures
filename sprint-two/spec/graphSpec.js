@@ -68,4 +68,14 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+  
+  //User Created Test:
+  it('should not add an edge that already exists', function() {
+    graph.addNode(5);
+    graph.addNode(7);
+    graph.addEdge(5, 7);
+    graph.addEdge(5, 7);
+    graph.removeEdge(5, 7);
+    expect(graph.hasEdge(5, 7)).to.equal(false);
+  });
 });
