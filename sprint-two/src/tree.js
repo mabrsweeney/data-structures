@@ -19,12 +19,15 @@ treeMethods.addChild = function(value) {
 treeMethods.contains = function(target) {
   var found = false;
   var checkNode = function(node) {
-    if (node.value === target) {
-      found = true;
-      return;
-    }
-    for (var i = 0; i < node.children.length; i++) {
-      checkNode(node.children[i]);
+    if (!found) {
+      
+      if (node.value === target) {
+        found = true;
+        return;
+      }
+      for (var i = 0; i < node.children.length; i++) {
+        checkNode(node.children[i]);
+      }
     }
   };
   checkNode(this);
