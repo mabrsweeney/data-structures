@@ -52,7 +52,7 @@ describe('hashTable', function() {
       hashTable.insert(person[0], person[0]);
       hashTable.insert(person[1], person[0]);
     });
-    expect(hashTable.retrieve(people[people.length - 1][0]).to.equal(undefined));
+    expect(hashTable.retrieve(people[people.length - 1][0])).to.equal(undefined);
   });
 
   // (Advanced! Remove the extra "x" when you want the following tests to run)
