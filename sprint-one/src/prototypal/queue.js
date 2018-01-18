@@ -7,26 +7,26 @@ var Queue = function() {
   return queueInstance;
 };
 
-var queueMethods = {};
-
-queueMethods.enqueue = function(val) {
-  for (var i = this.count; i > 0; i--) {
-    this.storage[this.count] = this.storage[this.count-1];
+var queueMethods = {
+  size: function() {
+    return this.count;
+  },
+  
+  enqueue: function(value) {
+    this.count++;
+    this.storage[this.count] = value;
+  },
+  
+  dequeue: function() {
+    if (this.count > 0) {
+      var output = this.storage[1];
+      for (var key in this.storage) {
+        this.storage[key - 1] = this.storage[key]; 
+      }
+      delete this.storage[0];
+      this.count--;
+      return output;
+    }
   }
-  this.storage[0] = val;
-  this.count++;
-};
-
-queueMethods.dequeue = function() {
-  if (this.count > 0) {
-    var deqVal = this.storage[this.count - 1];
-    delete this.storage[this.count - 1];
-    this.count--;
-    return deqVal;
-  }
-};
-
-queueMethods.size = function() {
-  return this.count;
 };
 

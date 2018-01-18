@@ -11,16 +11,16 @@ class Stack {
     this.count++;
   }
   
-  pop(){
-    if(this.count > 0) {
-      var popVal = this.storage[this.count-1];
-      delete this.storage[this.count-1];
+  pop() {
+    if (this.count > 0) {
+      var popVal = this.storage[this.count - 1];
+      delete this.storage[this.count - 1];
       this.count--;
       return popVal;
     }
   }
 
-  size(){
+  size() {
     return this.count;  
   }
 

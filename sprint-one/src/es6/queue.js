@@ -23,8 +23,7 @@ class Queue {
     }
   }
   
-  size(){
+  size() {
     return this.count;
   }
-
 }

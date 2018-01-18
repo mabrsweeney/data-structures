@@ -5,14 +5,15 @@ var Queue = function() {
   this.count = 0;
 };
 
-Queue.prototype.enqueue = function(val){
+Queue.prototype.enqueue = function(val) {
   for (var i = this.count; i > 0; i--) {
-    this.storage[i] = this.storage[i-1];
+    this.storage[i] = this.storage[i - 1];
   }
   this.storage[0] = val;
   this.count++;
 };
-Queue.prototype.dequeue = function(){
+
+Queue.prototype.dequeue = function() {
   if (this.count > 0) {
     var deqVal = this.storage[this.count - 1];
     delete this.storage[this.count - 1];
@@ -20,8 +21,8 @@ Queue.prototype.dequeue = function(){
     return deqVal;
   }
 };
-Queue.prototype.size = function(){
-  
+
+Queue.prototype.size = function() {
   return this.count;
 };
 
