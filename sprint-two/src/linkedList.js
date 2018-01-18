@@ -23,6 +23,7 @@ var LinkedList = function() {
       delete temp;
       return removedHead;
     }
+    throw new Error('No head exists!');
   };
 
   list.contains = function(target) {

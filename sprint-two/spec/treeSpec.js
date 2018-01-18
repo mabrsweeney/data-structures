@@ -41,4 +41,16 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
+  it('should be able to add any type as a value', function() {
+    tree.addChild('egg');
+    tree.addChild(Tree());
+    tree.children[0].addChild([1, 2, 3]);
+    tree.children[1].addChild(true);
+    expect(tree.contains(true)).to.equal(true);
+    //expect(tree.contains([1, 2, 3])).to.equal(true);
+    expect(tree.contains(Tree())).to.equal(true);
+    expect(tree.contains('pancake')).to.equal(false);
+
+  });
+
 });

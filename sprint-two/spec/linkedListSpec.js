@@ -51,5 +51,10 @@ describe('linkedList', function() {
     expect(linkedList.contains(4)).to.equal(false);
   });
 
+  //User Created Test
+  it('should throw an error when removeHead is called on an empty Linked List', function() {
+    expect(linkedList.removeHead).to.throw(Error);
+  });
+
   // add more tests here to test the functionality of linkedList
 });
