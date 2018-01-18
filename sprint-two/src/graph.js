@@ -31,6 +31,11 @@ Graph.prototype.removeNode = function(node) {
       idx = i;
     }
   }
+  if (this.edges[node] !== undefined) {
+    for (var i = 0; i < this.edges[node].length; i++) {
+      this.removeEdge(node, this.edges[node][i]);
+    }
+  } 
   
   this.nodes.splice(idx, 1);
 };
@@ -56,14 +61,40 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
   } else {
     this.edges[fromNode] = [toNode];
   }
+  if (this.edges.hasOwnProperty(toNode)) {
+    this.edges[toNode].push(fromNode);
+  } else {
+    this.edges[toNode] = [fromNode];
+  }
 };
 
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode) {
+  var idxFrom = -1;
+  var idxTo = -1;
+  for (var i = 0; i < this.edges[fromNode].length; i++) {
+    if (this.edges[fromNode][i] === toNode) {
+      idx = i;
+    }    
+  }
+  for (var i = 0; i < this.edges[toNode].length; i++) {
+    if (this.edges[toNode][i] === fromNode) {
+      idx = i;
+    }    
+  }
+  this.edges[fromNode].splice(idxFrom, 1);
+  this.edges[toNode].splice(idxTo, 1);
+  
 };
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
+  //for i in nodes:
+  //  cb(nodes[i])
+  for (var i = 0; i < this.nodes.length; i++) {
+    var args = Array.prototype.slice.call(arguments);
+    cb(this.nodes[i], args[1]);
+  }
 };
 
 /*
