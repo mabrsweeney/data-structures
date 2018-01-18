@@ -46,6 +46,14 @@ describe('hashTable', function() {
     expect(hashTable.retrieve(v2)).to.equal(v2);
     window.getIndexBelowMaxForKey = oldHashFunction;
   });
+  
+  it('should not add to a full hash table', function() {
+    _.each(people, function(person) {
+      hashTable.insert(person[0], person[0]);
+      hashTable.insert(person[1], person[0]);
+    });
+    expect(hashTable.retrieve(people[people.length - 1][0]).to.equal(undefined));
+  });
 
   // (Advanced! Remove the extra "x" when you want the following tests to run)
   xit ('should double in size when needed', function() {
