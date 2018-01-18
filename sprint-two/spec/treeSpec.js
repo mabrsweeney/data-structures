@@ -47,7 +47,7 @@ describe('tree', function() {
     tree.children[0].addChild([1, 2, 3]);
     tree.children[1].addChild(true);
     expect(tree.contains(true)).to.equal(true);
-    //expect(tree.contains([1, 2, 3])).to.equal(true);
+    expect(tree.contains([1, 2, 3])).to.equal(true);
     expect(tree.contains(Tree())).to.equal(true);
     expect(tree.contains('pancake')).to.equal(false);
 
