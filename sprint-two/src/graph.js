@@ -57,12 +57,16 @@ Graph.prototype.hasEdge = function(fromNode, toNode) {
 // Connects two nodes in a graph by adding an edge between them.
 Graph.prototype.addEdge = function(fromNode, toNode) {
   if (this.edges.hasOwnProperty(fromNode)) {
-    this.edges[fromNode].push(toNode);
+    if (!this.edges[fromNode].includes(toNode)) {
+      this.edges[fromNode].push(toNode);
+    }
   } else {
     this.edges[fromNode] = [toNode];
   }
   if (this.edges.hasOwnProperty(toNode)) {
-    this.edges[toNode].push(fromNode);
+    if (!this.edges[toNode].includes(fromNode)) {
+      this.edges[toNode].push(fromNode);
+    }
   } else {
     this.edges[toNode] = [fromNode];
   }
@@ -70,18 +74,22 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
 
 // Remove an edge between any two specified (by value) nodes.
 Graph.prototype.removeEdge = function(fromNode, toNode) {
+  if (this.edges[fromNode] === undefined) {
+    throw new Error('Edge does not exist');
+  }
   var idxFrom = -1;
   var idxTo = -1;
   for (var i = 0; i < this.edges[fromNode].length; i++) {
     if (this.edges[fromNode][i] === toNode) {
-      idx = i;
+      idxFrom = i;
     }    
   }
   for (var i = 0; i < this.edges[toNode].length; i++) {
     if (this.edges[toNode][i] === fromNode) {
-      idx = i;
+      idxTo = i;
     }    
   }
+  
   this.edges[fromNode].splice(idxFrom, 1);
   this.edges[toNode].splice(idxTo, 1);
   
