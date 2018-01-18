@@ -37,4 +37,11 @@ describe('binarySearchTree', function() {
     binarySearchTree.depthFirstLog(func);
     expect(array).to.eql([5, 2, 3, 7]);
   });
+  
+  it('should not accept anything other than a number as input', function() {
+    binarySearchTree.insert('egg');
+    binarySearchTree.insert(true);
+    expect(binarySearchTree.contains('egg')).to.equal(false);
+    expect(binarySearchTree.contains(true)).to.equal(false);
+  });
 });
