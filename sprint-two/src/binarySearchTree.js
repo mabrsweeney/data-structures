@@ -45,8 +45,15 @@ BinarySearchTree.methods.contains = function(value) {
   return false;
 };
 
-BinarySearchTree.methods.DepthFirstLog = function(cb) {
+BinarySearchTree.methods.depthFirstLog = function(cb) {
+  cb(this.value);
+  if (this.left !== null) {
+    this.left.depthFirstLog(cb);
 
+  }
+  if (this.right !== null) {
+    this.right.depthFirstLog(cb);
+  }
 };
 /*
  * Complexity: What is the time complexity of the above functions?
