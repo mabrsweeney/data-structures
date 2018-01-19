@@ -6,6 +6,12 @@ var HashTable = function() {
   this._size = 0;
 };
 
+
+// Input:   The current bucket, the key we are looking for and whether
+//          or not we want the pevious or next node.
+// Output:  Will return the node with the corresponding key
+// Purpose: Return the Node with the tuple in order to remove it or
+//          manipulate it.
 HashTable.prototype.getTupleNode = function(bucket, k, isPrev) {
   var curNode = bucket.head;
   
@@ -33,10 +39,10 @@ HashTable.prototype.getTupleNode = function(bucket, k, isPrev) {
   }
 };
 
-
+// Input:   Key, Value
+// Output:  N/A
+// Purpose: To insert a value into the Hash Table given the key.
 HashTable.prototype.insert = function(k, v) {
-
-  
   var index = getIndexBelowMaxForKey(k, this._limit);
   var bucket = this._storage.get(index);
   if (bucket === undefined) {
@@ -74,6 +80,10 @@ HashTable.prototype.insert = function(k, v) {
   this._size++;*/
 };
 
+// Input:   Key
+// Output:  Returns the value 
+// Purpose: Given the key the function will return the value
+//          using the hashing function to determine its location.
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   var bucket = this._storage.get(index);
@@ -105,6 +115,11 @@ HashTable.prototype.retrieve = function(k) {
   return this._storage.get(index);*/
 };
 
+
+// Input:   Key
+// Output:  N/A
+// Purpose: Removes a value from the hash table given a 
+//          Corresponding key.
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   var bucket = this._storage.get(index);
