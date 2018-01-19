@@ -8,9 +8,15 @@ var HashTable = function() {
 };
 
 HashTable.prototype.insert = function(k, v) {
-  if (this._size === this._limit) {
-    return undefined;
-  }
+
+  
+  if (this._size >= this._limit * .75) {
+    this.reHash(this._limit + this._limit);
+    
+  } else if (this._size <= this._limit * .25) {
+    this.reHash(Math.ceil(this._limit / 2));
+  } 
+  
   var index = getIndexBelowMaxForKey(k, this._limit);
   while (this._keyStorage.hasOwnProperty(index) && this._keyStorage[index] !== k) {
     index = (index + 1) % this._limit;
@@ -38,14 +44,25 @@ HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   while (this._keyStorage[index] !== k) { 
     index = (index + 1) % this._limit;
-    if (index === startIndex) {
-      return undefined;
-    }
   }
   this._storage.set(index, undefined);
   this._size--;
 };
 
+HashTable.prototype.reHash = function(newLimit) {
+  var tempStorage = this._storage;
+  var tempKeyStorage = this._keyStorage;
+  this._keyStorage = {};
+  this._storage = LimitedArray(newLimit);
+  this._size = 0;
+  for (var i = 0; i < this._limit; i++) {
+    if (tempStorage.get(i) !== undefined) {
+      var newKey = tempKeyStorage[i];
+      this.insert(newKey, tempStorage.get(i));
+    }
+  }
+  this._limit = newLimit;
+};
 
 
 /*
