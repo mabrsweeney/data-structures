@@ -8,6 +8,9 @@ var BinarySearchTree = function(value) {
 
 BinarySearchTree.methods = {};
 
+// Input:   Value to insert
+// Output:  N/A
+// Purpose: Insert a value into the correct location in the BST.
 BinarySearchTree.methods.insert = function(value) {
   if (typeof value !== 'number') {
     return undefined;
@@ -33,6 +36,9 @@ BinarySearchTree.methods.insert = function(value) {
   }
 };
 
+// Input:   Value
+// Output:  Whether or not the value is in the BST
+// Purpose: Iteratively determines if the input value is in the tree.
 BinarySearchTree.methods.contains = function(value) {
   var cTree = this;
   while (cTree !== null) {
@@ -48,6 +54,10 @@ BinarySearchTree.methods.contains = function(value) {
   return false;
 };
 
+// Input:   A callback function
+// Output:  N/A
+// Purpose: Will call a function on wach node in the tree in
+//          a depth first pattern.
 BinarySearchTree.methods.depthFirstLog = function(cb) {
   cb(this.value);
   if (this.left !== null) {
