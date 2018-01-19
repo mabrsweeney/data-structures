@@ -8,8 +8,11 @@ var HashTable = function() {
 
 HashTable.prototype.getTupleNode = function(bucket, k, isPrev) {
   var curNode = bucket.head;
+  
   if (curNode.value[0] === k) {
     return curNode;
+  } else if (curNode === bucket.tail) {
+    return undefined;
   } else if (curNode.next.value[0] === k) {
     if (isPrev) {
       return curNode;
@@ -103,6 +106,8 @@ HashTable.prototype.retrieve = function(k) {
 };
 
 HashTable.prototype.remove = function(k) {
+  var index = getIndexBelowMaxForKey(k, this._limit);
+  var bucket = this._storage.get(index);
   
   var removeNode = function(prevNode) {
     if (prevNode.next === bucket.tail) {
@@ -112,9 +117,6 @@ HashTable.prototype.remove = function(k) {
       prevNode.next = prevNode.next.next;
     }
   };
-  
-  var index = getIndexBelowMaxForKey(k, this._limit);
-  var bucket = this._storage.get(index);
   
   if (bucket === undefined) {
     return undefined;
@@ -152,20 +154,23 @@ HashTable.prototype.remove = function(k) {
 };
 
 HashTable.prototype.reHash = function(newLimit) {
-  var tempStorage = this._storage;
-  var tempKeyStorage = this._keyStorage;
-  this._keyStorage = {};
-  this._storage = LimitedArray(newLimit);
-  this._size = 0;
-  //Limit needs to be set before rehashing begins.
+  
+  
+  
+  // var tempStorage = this._storage;
+  // var tempKeyStorage = this._keyStorage;
+  // this._keyStorage = {};
+  // this._storage = LimitedArray(newLimit);
+  // this._size = 0;
+  // //Limit needs to be set before rehashing begins.
 
-  for (var i = 0; i < this._limit; i++) {
-    if (tempStorage.get(i) !== undefined) {
-      var newKey = tempKeyStorage[i];
-      this.insert(newKey, tempStorage.get(i));
-    }
-  }
-  this._limit = newLimit;
+  // for (var i = 0; i < this._limit; i++) {
+  //   if (tempStorage.get(i) !== undefined) {
+  //     var newKey = tempKeyStorage[i];
+  //     this.insert(newKey, tempStorage.get(i));
+  //   }
+  // }
+  // this._limit = newLimit;// 
 };
 
 
