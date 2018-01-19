@@ -33,27 +33,6 @@ treeMethods.contains = function(target) {
   
   return false;
   
-  // var found = false;
-  // var checkNode = function(node) {
-  //   if (!found) {
-  //     if (typeof(node.value) === 'object') {
-  //       if (JSON.stringify(node.value) === JSON.stringify(target)) {
-  //         found = true;
-  //         return;
-  //       }         
-  //     } else {
-  //       if (node.value === target) {
-  //         found = true;
-  //         return;
-  //       }        
-  //     }
-  //     for (var i = 0; i < node.children.length; i++) {
-  //       checkNode(node.children[i]);
-  //     }
-  //   }
-  // };
-  // checkNode(this);
-  // return found;
 };
 
 
