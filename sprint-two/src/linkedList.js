@@ -19,6 +19,9 @@ var LinkedList = function() {
     if (list.head !== null) {
       var temp = list.head;
       var removedHead = list.head.value;
+      if (list.head === list.tail) {
+        list.tail = null;
+      }
       list.head = list.head.next;
       delete temp;
       return removedHead;
@@ -29,8 +32,14 @@ var LinkedList = function() {
   list.contains = function(target) {
     var itrNode = list.head;
     while (itrNode !== null) {
-      if (itrNode.value === target) {
-        return true;
+      if (typeof target !== 'object') {
+        if (itrNode.value === target) {
+          return true;
+        }
+      } else {
+        if (JSON.stringify(itrNode.value) === JSON.stringify(target)) {
+          return true;
+        }
       }
       itrNode = itrNode.next;
     }
