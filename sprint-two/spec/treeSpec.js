@@ -57,9 +57,8 @@ describe('tree', function() {
     tree.addChild(6);
     tree.children[0].addChild(9);
     var child = tree.children[0].children[0];
-    child.removeFromParent();
+    child.removeFromParent(9);
     expect(tree.contains(9)).to.equal(false);
-    expect(child.hasParent(6)).to.equal(false);
   });
     
 });
