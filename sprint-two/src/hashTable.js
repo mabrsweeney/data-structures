@@ -63,24 +63,6 @@ HashTable.prototype.insert = function(k, v) {
   if (this._size > this._limit * .75) {
     this.reSize(this._limit + this._limit);
   } 
-  //check for reSize;
-  
-/*  if (this._size >= this._limit * .75) {
-    this.reHash(this._limit + this._limit);
-    
-  } else if (this._size <= this._limit * .25) {
-    this.reHash(Math.ceil(this._limit / 2));
-  } 
-  // index is out of bounds because the old limit is still being used
-  // after the Hashtable is resized.
-  var index = getIndexBelowMaxForKey(k, this._limit);
-  while (this._keyStorage.hasOwnProperty(index) && this._keyStorage[index] !== k) {
-    index = (index + 1) % this._limit;
-  }
-
-  this._keyStorage[index] = k;
-  this._storage.set(index, v);
-  this._size++;*/
 };
 
 // Input:   Key
@@ -106,16 +88,6 @@ HashTable.prototype.retrieve = function(k) {
       return curNode.value[1];
     }
   }
-  
-  /*var startIndex = index;
-  while (this._keyStorage[index] !== k) { 
-    index = (index + 1) % this._limit;
-    if (index === startIndex) {
-      return undefined;
-    }
-  }
-
-  return this._storage.get(index);*/
 };
 
 
@@ -154,25 +126,6 @@ HashTable.prototype.remove = function(k) {
   if (this._size < this._limit * .25) {
     this.reSize(Math.floor(this._limit / 2));
   } 
-  /*var curNode = bucket.head;
-  if (curNode.value[0] === k) {
-    bucket.removeHead();
-  } else if (curNode.next.value[0] === k) {
-    removeNode(curNode);
-  } else {
-    while (curNode.next !== bucket.tail) {
-      curNode = curNode.next;
-      if (curNode.next.value[0] === k) {
-        removeNode(curNode);
-      }
-    }
-  }*/
-  /*var index = getIndexBelowMaxForKey(k, this._limit);
-  while (this._keyStorage[index] !== k) { 
-    index = (index + 1) % this._limit;
-  }
-  this._storage.set(index, undefined);
-  this._size--;*/
 };
 
 HashTable.prototype.reSize = function(newLimit) {
@@ -191,20 +144,6 @@ HashTable.prototype.reSize = function(newLimit) {
       }
     }
   }
-  // var tempStorage = this._storage;
-  // var tempKeyStorage = this._keyStorage;
-  // this._keyStorage = {};
-  // this._storage = LimitedArray(newLimit);
-  // this._size = 0;
-  // //Limit needs to be set before rehashing begins.
-
-  // for (var i = 0; i < this._limit; i++) {
-  //   if (tempStorage.get(i) !== undefined) {
-  //     var newKey = tempKeyStorage[i];
-  //     this.insert(newKey, tempStorage.get(i));
-  //   }
-  // }
-  // this._limit = newLimit;// 
 };
 
 
