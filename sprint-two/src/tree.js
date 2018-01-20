@@ -18,11 +18,7 @@ treeMethods.addChild = function(value) {
 };
 
 treeMethods.contains = function(target) {
-  if (typeof this.value === 'object' && 
-    JSON.stringify(this.value) === JSON.stringify(target)) {
-    return true;
-  }
-  if (this.value === target) {
+  if (this.isAtNode(this, target)) {
     return true;
   }
   
@@ -31,12 +27,45 @@ treeMethods.contains = function(target) {
       return true;
     }
   }
-  
   return false;
+};
+
+treeMethods.hasParent = function(child, parent) {
+  var nodes = [this];
+  while (nodes.length > 0) {
+    var curNode = node.pop();
+    if (this.isAtNode()){}
+  }
   
 };
 
+treeMethods.removeFromParent = function(target) {
+  var nodes = [this];
+  while (nodes.length > 0) {
+    var curNode = nodes.pop();
+    if (this.isAtNode(curNode, target)) {
+      var parent = curNode.parent;
+      curNode.parent = null;
+      var indexOfChild = parent.children.indexOf(curNode);
+      parent.children.splice(indexOfChild, 1);
+    } else {
+      for (var i = 0; i < curNode.children.length; i++) {
+        nodes.push(curNode.children[i]);
+      }
+    }
+  }
+};
 
+treeMethods.isAtNode = function(node, target) {
+  if (typeof node.value === 'object' && 
+    JSON.stringify(node.value) === JSON.stringify(target)) {
+    return true;
+  }
+  if (node.value === target) {
+    return true;
+  }
+  return false;
+};
 
 /*
  * Complexity: What is the time complexity of the above functions?
