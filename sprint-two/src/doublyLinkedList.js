@@ -3,6 +3,9 @@ var DoublyLinkedList = function() {
   list.head = null;
   list.tail = null;
 
+  // Input:   A value
+  // Output:  N/A
+  // Purpose: Adds a new node to the tail of the DLL
   list.addToTail = function(value) {
     var newNode = Node(value);
     if ( list.head === null ) {
@@ -16,6 +19,9 @@ var DoublyLinkedList = function() {
 
   };
   
+  // Input:   A value
+  // Output:  N/A
+  // Purpose: Adds a new node to the head of the DLL
   list.addToHead = function(value) {
     var newNode = Node(value);
     
@@ -29,6 +35,10 @@ var DoublyLinkedList = function() {
     }
   };
 
+  // Input:   N/A
+  // Output:  Returns the removed head
+  // Purpose: Removes the head node and points to the next
+  //          node in the DLL
   list.removeHead = function() {
     if (list.head !== null) {
       var temp = list.head;
@@ -45,6 +55,10 @@ var DoublyLinkedList = function() {
     throw new Error('No head exists!');
   };
   
+  // Input:   N/A
+  // Output:  Returns the removed tail
+  // Purpose: Removes the tail node and points to the previous
+  //          node in the DLL
   list.removeTail = function() {
     if (list.head !== null) {
       var removed = list.tail.value;
@@ -61,6 +75,10 @@ var DoublyLinkedList = function() {
     
   };
 
+  // Input:   A target value
+  // Output:  Boolean value
+  // Purpose: Determines whether the target value is 
+  //          contain within the DLL
   list.contains = function(target) {
     var itrNode = list.head;
     while (itrNode !== null) {
