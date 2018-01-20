@@ -128,6 +128,9 @@ HashTable.prototype.remove = function(k) {
   } 
 };
 
+  // Input:   The size of the new Limited Array
+  // Output:  A resized hash table
+  // Purpose: TResize the hash table in order to improve performance
 HashTable.prototype.reSize = function(newLimit) {
   var tempStorage = this._storage;
   var oldLimit = this._limit;
