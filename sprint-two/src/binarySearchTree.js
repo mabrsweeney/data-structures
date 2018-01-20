@@ -54,6 +54,10 @@ BinarySearchTree.methods.contains = function(value) {
   return false;
 };
 
+// Input:   A callback function
+// Output:  N/A
+// Purpose: Will call a function on each node in the tree in
+//          a breasth first pattern.
 BinarySearchTree.methods.breadthFirstLog = function(cb) {
   var nodes = [this];
   
