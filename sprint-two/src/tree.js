@@ -47,6 +47,17 @@ treeMethods.removeFromParent = function(target) {
   }
 };
 
+treeMethods.traverse = function(cb) {
+  var nodes = [this];
+  while (nodes.length > 0) {
+    var curNode = nodes.pop();
+    cb(curNode);
+    for (var i = 0; i < curNode.children.length; i++) {
+      nodes.push(curNode.children[i]);
+    }
+  }
+};
+
 treeMethods.isAtNode = function(node, target) {
   if (typeof node.value === 'object' && 
     JSON.stringify(node.value) === JSON.stringify(target)) {
