@@ -54,9 +54,24 @@ BinarySearchTree.methods.contains = function(value) {
   return false;
 };
 
+BinarySearchTree.methods.breadthFirstLog = function(cb) {
+  var nodes = [this];
+  
+  while (nodes.length > 0) {
+    var node = nodes.shift();
+    cb(node.value);
+    if (node.left !== null) {
+      nodes.push(node.left);
+    }
+    if (node.right !== null) {
+      nodes.push(node.right);
+    }
+  }
+};
+
 // Input:   A callback function
 // Output:  N/A
-// Purpose: Will call a function on wach node in the tree in
+// Purpose: Will call a function on each node in the tree in
 //          a depth first pattern.
 BinarySearchTree.methods.depthFirstLog = function(cb) {
   cb(this.value);
