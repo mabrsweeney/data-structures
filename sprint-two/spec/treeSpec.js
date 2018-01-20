@@ -52,5 +52,14 @@ describe('tree', function() {
     expect(tree.contains('pancake')).to.equal(false);
 
   });
-
+  
+  it('should be able to sever parent-child relationship', function() {
+    tree.addChild(6);
+    tree.children[0].addChild(9);
+    var child = tree.children[0].children[0];
+    child.removeFromParent();
+    expect(tree.contains(9)).to.equal(false);
+    expect(child.hasParent(6)).to.equal(false);
+  });
+    
 });
