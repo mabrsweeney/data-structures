@@ -61,4 +61,19 @@ describe('tree', function() {
     expect(tree.contains(9)).to.equal(false);
   });
     
+  it('should execute a callback on every value in a tree using "traverse"', function() {
+    tree.addChild(1);
+    tree.children[0].addChild(3);
+    tree.children[0].addChild(90);
+    tree.children[0].children[1].addChild(6148);
+    tree.traverse(function(node) {
+      node.value *= 2;
+    });
+    expect(tree.contains(2)).to.equal(true);
+    expect(tree.contains(6)).to.equal(true);
+    expect(tree.contains(180)).to.equal(true);
+    expect(tree.contains(12296)).to.equal(true);
+    expect(tree.contains(1)).to.equal(false);
+  });
+    
 });
