@@ -30,15 +30,6 @@ treeMethods.contains = function(target) {
   return false;
 };
 
-treeMethods.hasParent = function(child, parent) {
-  var nodes = [this];
-  while (nodes.length > 0) {
-    var curNode = node.pop();
-    if (this.isAtNode()){}
-  }
-  
-};
-
 treeMethods.removeFromParent = function(target) {
   var nodes = [this];
   while (nodes.length > 0) {
