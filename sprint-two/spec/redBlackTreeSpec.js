@@ -35,7 +35,7 @@ describe('redBlackTree', function() {
     redBlackTree.insert(3);
     redBlackTree.insert(7);
     redBlackTree.depthFirstLog(func);
-    expect(array).to.eql([5, 2, 3, 7]);
+    expect(array).to.eql([3, 2, 5, 7]);
   });
   
   it('should execute a callback on every value in a tree using "breadthFirstLog"', function() {
@@ -45,7 +45,7 @@ describe('redBlackTree', function() {
     redBlackTree.insert(3);
     redBlackTree.insert(7);
     redBlackTree.breadthFirstLog(func);
-    expect(array).to.eql([5, 2, 7, 3]);
+    expect(array).to.eql([3, 2, 5, 7]);
   });
   
   it('should not accept anything other than a number as input', function() {

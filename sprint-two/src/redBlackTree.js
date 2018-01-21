@@ -20,7 +20,13 @@ RedBlackTree.methods.insert = function(value) {
     return undefined;
   }
 
+  // cTree needs to be the root node. after rotating the tree at
+  // the root node this remains the same and must be set to the new root.
   var cTree = this;
+  while (cTree.parent !== null) {
+    cTree = cTree.parent;
+  }
+  
   var pTree = null;
   while (cTree !== null) {
     if (cTree.value < value) {
@@ -172,14 +178,14 @@ RedBlackTree.methods.rotateLeft = function(node) {
   }
   node.parent = child;
   
-  if (node.parent !== null) {
-    if (node.parent.left === node) {
-      node.parent.left = child;
+  if (parent !== null) {
+    if (parent.left === node) {
+      parent.left = child;
     } else {
-      node.parent.right = child;
+      parent.right = child;
     }
-    child.parent = node.parent;
   }
+  child.parent = parent;
   // parent.right = childLeft;
   // childLeft = parent;
   // grandParent = node;
@@ -194,16 +200,16 @@ RedBlackTree.methods.rotateRight = function(node) {
   if (temp !== null) {
     temp.parent = node; 
   }
-  child.parent = node.parent;
   node.parent = child;
   
-  if (node.parent !== null) {
-    if (node.parent.left === node) {
-      node.parent.left = child;
+  if (parent !== null) {
+    if (parent.left === node) {
+      parent.left = child;
     } else {
-      node.parent.right = child;
+      parent.right = child;
     }
   }
+  child.parent = parent;
   // parent.left = childRight;
   // childRight = parent;
   // grandParent = node;
