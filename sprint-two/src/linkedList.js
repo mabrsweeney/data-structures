@@ -8,14 +8,8 @@ var LinkedList = function() {
   // Purpose: Adds a new node to the tail of the DLL
   list.addToTail = function(value) {
     var newNode = Node(value);
-    if ( list.head === null ) {
-      list.head = newNode;
-      list.tail = newNode;
-    } else {
-      list.tail.next = newNode;
-      list.tail = newNode;
-    }
-
+    list.head ? list.tail.next = newNode : list.head = newNode;
+    list.tail = newNode;
   };
 
   // Input:   N/A
